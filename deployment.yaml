@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "transcription"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "transcription"
+  template:
+    metadata:
+      labels:
+        app: "transcription"
+    spec:
+      containers:
+      - name: transcription
+        image: us.cr.io/demo-lucas/transcription
+        env:
+        - name: COS_SERVICES
+          valueFrom:
+            secretKeyRef:
+              name: binding-myobjectstorage
+              key: binding
+        - name: STT_SERVICES
+          valueFrom:
+            secretKeyRef:
+              name: binding-stt-lucas-demo
+              key: binding
