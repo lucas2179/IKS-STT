@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: transcription
-        image: us.cr.io/demo-lucas/transcription
+        image: lucassouza21/teste-docker
         env:
         - name: COS_SERVICES
           valueFrom:
